@@ -1,7 +1,7 @@
 require_relative "piece.rb"
 require 'byebug'
 class Board
-  
+  attr_reader :grid
   def initialize 
     @grid = Array.new(8) { Array.new(8) } 
     @grid[0].each_index do |space_idx|
@@ -13,7 +13,7 @@ class Board
       end 
       rows = [6, 7]
       rows.each do |row|
-        piece = Piece.new(:white, self, [row, space_idx])
+        piece = Piece.new(:light_blue, self, [row, space_idx])
         @grid[row][space_idx] = piece  
       end 
       
@@ -42,6 +42,13 @@ class Board
   def []=(pos, value)
     # debugger 
     @grid[pos[0]][pos[1]] = value 
+  end 
+  
+  def valid_pos?(pos)
+    pos.each do |ord| 
+      return false if ord > 7 || ord < 0 
+    end
+    true  
   end 
   
 end 
