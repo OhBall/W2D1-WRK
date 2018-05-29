@@ -25,7 +25,7 @@ class Board
     end
 
     #For testing purposes
-    @grid[4][4] =  Queen.new(:light_blue,self, [4,4])
+    @grid[7][3] =  King.new(:light_blue,self, [7,3])
 
   end
 
@@ -55,4 +55,4 @@ class Board
 end
 
 b = Board.new
-p b[[4,4]].moves
+p b[[7,3]].moves
