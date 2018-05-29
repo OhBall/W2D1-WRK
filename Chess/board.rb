@@ -64,6 +64,24 @@ class Board
     true
   end
 
+  def in_check?(color)
+    @grid.each do |row|
+      row.each do |col|
+        king_pos = col.pos if col.class == King && col.color == color
+      end
+    end
+
+
+
+    @grid.each do |row|
+      row.each do |col|
+        return true if col != self.null &&
+          col.color != color &&
+          col.moves.include?(king_pos)
+      end
+    end
+    false
+  end
 end
 b = Board.new
 p b[[0,3]].moves
