@@ -7,16 +7,12 @@ class Board
     @null = NullPiece.instance
     @grid = Array.new(8) { Array.new(8) }
     @grid[0].each_index do |space_idx|
-      rows = [0, 1]
-      rows.each do |row|
-        piece = Piece.new(:black, self, [row, space_idx])
-        @grid[row][space_idx] = piece
-      end
-      rows = [6, 7]
-      rows.each do |row|
-        piece = Piece.new(:light_blue, self, [row, space_idx])
-        @grid[row][space_idx] = piece
-      end
+
+      piece = Pawn.new(:black, self, [1, space_idx])
+      @grid[1][space_idx] = piece
+
+      piece = Pawn.new(:light_blue, self, [6, space_idx])
+      @grid[6][space_idx] = piece
 
       rows = [2,3,4,5]
       rows.each do |row|
@@ -24,10 +20,25 @@ class Board
         @grid[row][space_idx] = piece
       end
     end
+    @grid[0] = back_row_builder(:black, 0)
+    @grid[7] = back_row_builder(:light_blue, 7)
 
     #For testing purposes
     @grid[0][3] =  Pawn.new(:black,self, [0,3])
 
+  end
+
+  def back_row_builder(color, row)
+    back_row = []
+    back_row << Rook.new(color, self, [row, 0])
+    back_row << Knight.new(color, self, [row, 1])
+    back_row << Bishop.new(color, self, [row, 2])
+    back_row << King.new(color, self, [row, 3])
+    back_row << Queen.new(color, self, [row, 4])
+    back_row << Rook.new(color, self, [row, 5])
+    back_row << Knight.new(color, self, [row, 6])
+    back_row << Bishop.new(color, self, [row, 7])
+    back_row
   end
 
   class NoPieceError < StandardError;end
