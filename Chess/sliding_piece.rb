@@ -3,12 +3,16 @@ module SlidingPiece
   def moves
     case move_dirs
     when :diagonal
-
+      operations_set = [[:+, :+], [:+, :-], [:-, :+], [:-, :-]]
+      move_helper(self.pos, operations_set)
     when :straight
-      operations_set = [[:-,:return_self],[:+,:return_self],[:return_self,:-],[:return_self,:+]]
-      move_helper(self.pos, operations_set) 
+      operations_set = [[:-,:return_self],[:+,:return_self],
+                        [:return_self,:-],[:return_self,:+]]
+      move_helper(self.pos, operations_set)
     when :both
-
+      operations_set = [[:+, :+], [:+, :-], [:-, :+], [:-, :-],
+        [:-,:return_self],[:+,:return_self],[:return_self,:-],[:return_self,:+]]
+      move_helper(self.pos, operations_set)
     end
   end
 
