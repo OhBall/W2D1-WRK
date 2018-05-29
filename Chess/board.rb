@@ -26,7 +26,7 @@ class Board
     end
 
     #For testing purposes
-    # @grid[7][3] =  King.new(:light_blue,self, [7,3])
+    @grid[0][3] =  Pawn.new(:black,self, [0,3])
 
   end
 
@@ -54,5 +54,7 @@ class Board
   end
 
 end
-
-# p b[[7,3]].moves
+b = Board.new
+p b[[0,3]].moves
+# b[[2,3]].first_move = false
+# p b[[2,3]].moves
