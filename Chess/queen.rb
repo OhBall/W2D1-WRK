@@ -6,4 +6,8 @@ class Queen < Piece
   def move_dirs
     :both
   end
+
+  def to_s
+    return "Q"
+  end
 end

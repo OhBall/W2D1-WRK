@@ -1,6 +1,6 @@
 class Piece
-  attr_reader :color, :pos, :board 
-  def initialize(color, board, pos)
+  attr_reader :color, :pos, :board
+  def initialize(color = nil, board = nil, pos = nil)
     @color = color
     @board = board
     @pos = pos
@@ -11,7 +11,7 @@ class Piece
   end
 
   def to_s
-    return "P"
+    return "P" 
   end
 
 end

@@ -6,4 +6,8 @@ class Knight < Piece
     :knight
   end
 
+  def to_s
+    return "K"
+  end
+
 end

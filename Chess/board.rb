@@ -2,8 +2,9 @@ require_relative "pieces.rb"
 require 'byebug'
 
 class Board
-  attr_reader :grid
+  attr_reader :grid, :null
   def initialize
+    @null = NullPiece.instance
     @grid = Array.new(8) { Array.new(8) }
     @grid[0].each_index do |space_idx|
       rows = [0, 1]
@@ -19,22 +20,22 @@ class Board
 
       rows = [2,3,4,5]
       rows.each do |row|
-        piece = nil
+        piece = self.null
         @grid[row][space_idx] = piece
       end
     end
 
     #For testing purposes
-    @grid[7][3] =  King.new(:light_blue,self, [7,3])
+    # @grid[7][3] =  King.new(:light_blue,self, [7,3])
 
   end
 
   class NoPieceError < StandardError;end
   def move_piece(start_pos, end_pos)
-    raise NoPieceError if self[start_pos].nil?
+    raise NoPieceError if self[start_pos] == self.null
     #add end_pos check
     self[end_pos] = self[start_pos]
-    self[start_pos] = nil
+    self[start_pos] = self.null
   end
 
   def [](pos)
@@ -54,5 +55,4 @@ class Board
 
 end
 
-b = Board.new
-p b[[7,3]].moves
+# p b[[7,3]].moves

@@ -6,4 +6,9 @@ class King < Piece
     :king
   end
 
+  def to_s
+    #King gets $ because he's got that $$$$$$$
+    return "$"
+  end
+
 end

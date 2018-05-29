@@ -6,4 +6,8 @@ class Bishop < Piece
   def move_dirs
     :diagonal
   end
+
+  def to_s
+    return "B"
+  end
 end
