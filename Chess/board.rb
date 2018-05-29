@@ -25,7 +25,7 @@ class Board
     end
 
     #For testing purposes
-    #@grid[4][4] =  Rook.new(:light_blue,self, [4,4])
+    @grid[4][4] =  Rook.new(:light_blue,self, [4,4])
 
   end
 
@@ -53,3 +53,6 @@ class Board
   end
 
 end
+
+b = Board.new
+p b[[4,4]].moves 
